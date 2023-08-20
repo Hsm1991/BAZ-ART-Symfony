@@ -1,0 +1,14 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+    <h1>Create new User</h1>
+
+    {{ include('user/_form.html.twig') }}
+
+    <button class="btn btn-info" style="margin-top: 5px">{{ button_label|default('Retour en Arrière') }}<br></button>
+{% endblock %}

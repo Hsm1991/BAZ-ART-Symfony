@@ -1,0 +1,16 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-front-artiste.html.twig" : "front-seif.html.twig" %}
+{%  block title %}modifier reclamation{% endblock %}
+
+{% block body %}
+    <h1>Modifier Ma Reclamation</h1>
+
+    {{ include('reclamation/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+
+
+    <a href="{{ path('app_reclamation_indexfront') }}"><button class="btn btn-info"style="margin-left: 49.1%">Retour En Arrière</button></a>
+
+    {{ include('reclamation/_delete_form.html.twig') }}
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

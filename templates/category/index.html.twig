@@ -1,0 +1,48 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <h1 class="text-primary" style="margin-left: 35%">Catégorie Index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Detail</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_type in user_types %}
+            <tr>
+                <td>{{ user_type.id }}</td>
+                <td>{{ user_type.nom }}</td>
+                <td>{{ user_type.detail }}</td>
+                <td>{{ user_type.status }}</td>
+                <td>
+
+                    <a class="nav-link" href="{{ path('app_user_type_show', {'id': user_type.id}) }}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <span>Afficher</span></a>
+
+                    <a class="nav-link" href="{{ path('app_user_type_edit', {'id': user_type.id}) }}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <span>Modifier</span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('app_user_type_new') }}"><button class="btn btn-info">Ajouter Une Nouvelle Catégorie</button></a>
+{% endblock %}

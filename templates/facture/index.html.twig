@@ -1,0 +1,53 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+{% block title %}Factures {% endblock %}
+
+{% block stylesheet %}
+<!-- Custom fonts for this template-->
+<link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+<link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+<link href="{{ asset('css/reclamation-back.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <h1>Factures</h1>
+<div class="table-wrapper">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idfacture</th>
+                <th>Idcmd</th>
+                <th>Iduser</th>
+                <th>Montant</th>
+                <th>Datecmd</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for facture in factures %}
+            <tr>
+                <td>{{ facture.idfacture }}</td>
+                <td>{{ facture.idcmd }}</td>
+                <td>{{ facture.iduser }}</td>
+                <td>{{ facture.montant }}</td>
+                <td>{{ facture.datecmd }}</td>
+                <td>
+                    <a href="{{ path('app_facture_imprimer', {'idfacture': facture.idfacture} ) }}">imprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">aucune facture</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

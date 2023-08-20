@@ -1,0 +1,15 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+{% block title %}New Commandpm{% endblock %}
+
+{% block body %}
+    <h1>Ajouter Une Commande Du Matiere Premiere</h1>
+
+
+    <link href="{{ asset('malek/css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('malek/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+
+    {{ include('commandpm/_form.html.twig') }}
+
+
+{% endblock %}

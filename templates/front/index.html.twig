@@ -1,0 +1,23 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Hello FrontController!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+    welcome
+    <br>
+    {{ app.user.firstname }} {{ app.user.lastname }}
+    <br>
+    {{ app.user.category }}
+
+    <br><br><br><br>
+
+    <a href="/{{ app.user? 'logout' :'login' }}">{{ app.user? 'Logout' :'Login' }}</a>
+        <a href="/front/logout"> log out </a>
+        <a href="/front/modify"> Modify account </a>
+        <a href="/front/delete"> Delete account </a>
+
+
+    </div>
+{% endblock %}

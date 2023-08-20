@@ -1,0 +1,24 @@
+{#{% extends 'base-front.html.twig' %}#}
+{% extends  "base-front-artiste.html.twig" %}
+
+{% block title %}Salles{% endblock %}
+
+{% block body %}
+    <div class="title-all text-center">
+        <h1 >Liste Des Salles</h1>
+    </div>
+    <div class="categories-shop">
+        <div class="container">
+            <div class="row">
+                {% for salle in salles %}
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="shop-cat-box">
+                            <img class="img-fluid" src={{ asset('uploads/personnes/' ~ getImgName(salle.image))}}>
+                            <a class="btn hvr-hover" href="{{ path('app_salle_front_show', {'id': salle.id}) }}">{{ salle.nom }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

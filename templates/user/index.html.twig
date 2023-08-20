@@ -1,0 +1,82 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+
+{% block title %}Liste des Utilisateurs{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-primary" style="margin-left: 35%">Utilisateurs Index</h1>
+<div class="row mb-sm-5"> </div>
+<div class=" p-xl-4 bg-light  mh-100" style="width: 40cm; height: 10cm;">
+
+    <div class="table-wrapper-scroll-y my-custom-scrollbar" style="height:1000px">
+
+    <table  id="tableuser" class="table table-hover table-fixed container-fluid  " >
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Email</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Firstname</th>
+                <th scope="col">Address</th>
+                <th scope="col">Tel</th>
+                <th scope="col">City</th>
+                <th scope="col">Roles</th>
+{#                <th scope="col">Password</th>#}
+{#                <th scope="col">IsVerified</th>#}
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.address }}</td>
+                <td>{{ user.tel }}</td>
+                <td>{{ user.city }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+{#                <td >{{ user.password }}</td>#}
+{#                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>#}
+                <td>
+                    <a class="nav-link" href="{{ path('app_user_show', {'id': user.id}) }}">
+                        <i class="fa fa-book fa-fw" aria-hidden="true"></i>
+                        <span>Afficher</span></a>
+                    <a class="nav-link" href="{{ path('app_user_edit', {'id': user.id}) }}">
+                        <i class="fa fa-book fa-fw" aria-hidden="true"></i>
+                        <span>Modifier</span></a>
+                    <a class="nav-link"  href="{{ path('app_user_change_status', {'id': user.id}) }}">{% if user.status == 'Blocked' %}
+                            Unblock
+                        {% endif %}
+                        {% if user.status == 'Actif' %}
+                            Block
+                        {% endif %}</a>
+{#                    <a href="{{ path('app_admin_send_mail', {'id': user.id}) }}">send mail</a>#}
+
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <a href="{{ path('app_user_new') }}"><button class="btn btn-info">Ajouter Un Nouveau Utilisateur</button></a>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

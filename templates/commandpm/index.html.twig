@@ -1,0 +1,61 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+{% block title %}Commandpm index{% endblock %}
+
+{% block body %}
+    {% if messagess is defined %}
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well done! le produit et ajouter avec succes</h4>
+
+            {{ messagess }}
+        </div>
+    {% endif %}
+    <h1>liste de commande </h1>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <div class="container">
+
+        <table class="table table-bordered" id="prodCMa">
+            <thead>
+            <tr class="table-primary">
+                <th>Idcpm</th>
+                <th>Idprod</th>
+                <th>Nomprod</th>
+                <th>Referencecm</th>
+                <th>Date</th>
+                <th>Quantitecpm</th>
+                <th>Iduser</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for commandpm in commandpms %}
+                <tr>
+                    <td>{{ commandpm.idcpm }}</td>
+                    <td>{{ commandpm.idprod }}</td>
+                    <td>{{ commandpm.nomprod }}</td>
+                    <td>{{ commandpm.referencecm }}</td>
+                    <td>{{ commandpm.date ? commandpm.date|date('Y-m-d') : '' }}</td>
+                    <td>{{ commandpm.quantitecpm }}</td>
+                    <td>{{ commandpm.iduser }}</td>
+                    <td>{{ commandpm.type }}</td>
+                    <td style="background-color:#3a3b45">
+                        <a class="nav-link" href="{{ path('app_commandpm_show', {'idcpm': commandpm.idcpm}) }}"><i
+                                    class="fas fa-fw fa-table" aria-hidden="true"></i> afficher</a>
+
+                        <a class="nav-link" href="{{ path('app_commandpm_edit', {'idcpm': commandpm.idcpm}) }}"><i
+                                    class="fa fa-cog fa-spin fa-1.75 fa-fw"></i> <span class="sr-only">Loading...</span>Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">aucune commande à afficher</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary" href="{{ path('addcm') }}">Nouvelle Commande</a>
+    </div>
+{% endblock %}

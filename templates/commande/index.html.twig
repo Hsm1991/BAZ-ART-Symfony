@@ -1,0 +1,63 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}Commandes{% endblock %}
+
+{% block body %}
+    <h1>Commandes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idcmd</th>
+                <th>Id User</th>
+                <th>Idprod</th>
+                <th>Nom produit</th>
+                <th>Quantite</th>
+                <th>Prix</th>
+                <th>Prix remise</th>
+                <th>Etat cmd</th>
+                <th>Date cmd</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for commandeArray in commandes %}
+            {% for commande in commandeArray %}
+            <tr>
+                <td>{{ commande.idcmd }}</td>
+                <td>{{ commande.idpanier }}</td>
+                <td>{{ commande.idprod }}</td>
+                <td>{{ commande.nomprod }}</td>
+                <td>{{ commande.quantite }}</td>
+                <td>{{ commande.prixprod }}</td>
+                <td>{{ commande.prixremise }}</td>
+                <td>{{ commande.etatcmd }}</td>
+                <td>{{ commande.datecmd }}</td>
+
+            </tr>
+            {% endfor%}
+            {% for i in 1..2 %}
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            {% endfor %}
+
+        {% else %}
+            <tr>
+                <td colspan="10">aucune commande à afficher</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   {# <a href="{{ path('app_commande_new') }}">Create new</a>  #}
+{% endblock %}

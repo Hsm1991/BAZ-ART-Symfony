@@ -1,0 +1,78 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-front-artiste.html.twig" : "front-seif.html.twig" %}
+{% block title %}reclamatins{% endblock %}
+{% block body %}
+    <h1 style="font-size: 35px">Ma Reclamation</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ reclamation.id }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td><textarea style="min-width: 1000px ; min-height: 300px" readonly>{{ reclamation.description }}</textarea></td>
+        </tr>
+        <tr>
+            <th>Recdate</th>
+            <td>{{ reclamation.recdate }}</td>
+        </tr>
+        <tr>
+            <th>Selon</th>
+            <td>{{ reclamation.selon }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_indexfront') }}"><button style="
+                display: inline-block;
+                outline: 0;
+                cursor: pointer;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+                background: #FFD814;
+                border: 1px solid #FCD200;
+                font-size: 13px;
+                height: 31px;
+                padding: 0 11px;
+                text-align: center;
+                width: 100%;
+                min-width: 200px;
+                font-weight: 500;
+                color: #0F1111;
+                :hover{
+                    background: #F7CA00;
+                    border-color: #F2C200;
+                    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+                }
+                ">retourner à la vue densemble</button> </a>
+
+
+    <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}"> <button style="
+                display: inline-block;
+                outline: 0;
+                cursor: pointer;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+                background: #FFD814;
+                border: 1px solid #FCD200;
+                font-size: 13px;
+                height: 31px;
+                padding: 0 11px;
+                text-align: center;
+                width: 100%;
+                min-width: 200px;
+                font-weight: 500;
+                color: #0F1111;
+                :hover{
+                    background: #F7CA00;
+                    border-color: #F2C200;
+                    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+                }
+                ">modifier ma reclamation</button>  </a>
+
+    <br>
+
+    {{ include('reclamation/_delete_form.html.twig') }}
+{% endblock %}

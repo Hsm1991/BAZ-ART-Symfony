@@ -1,0 +1,12 @@
+{#{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}#}
+{% extends "base-front-artiste.html.twig"  %}
+
+{% block title %}New Ticket{% endblock %}
+
+{% block body %}
+    <h1 class="text-primary" style="margin-left: 35%">Ajouter Un Ticket</h1>
+
+    {{ include('ticket/_form.html.twig') }}
+
+    <br><a href="{{ path('app_ticket_index') }}"><button class="btn btn-info">Retour En Arrière</button></a>
+{% endblock %}

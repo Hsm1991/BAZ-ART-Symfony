@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-sm-3">
+
+    </div>
+    <div class="col-sm-6">
+
+        {% if message is defined %}
+            <div class="alert alert-danger" id="alert" role="alert">
+                <i class="fas fa-laugh-wink"></i>
+                {{ message }}
+            </div>
+        {% endif %}
+
+
+        <h1>Ajouter Un Nouveau Produit</h1>
+        <form action="/produitpm/add" method="post">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nom Du Prodiut</label>
+                <input  list="datalist_id" required="required" {% if PrixpmNomprod is defined %} value="{{ Nomprod }}" {% endif %} name="Nomprod" class="form-control" id="Nomprod"
+                       placeholder="nom du produit ">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Reference</label>
+                <input type="number" name="Referencep"  {% if Referencep is defined %} value="{{ Referencep }}" {% endif %} class="form-control" id="Quantitep" placeholder="Reference">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Quantite</label>
+                <input type="number" {% if Quantitep is defined %} value="{{ Quantitep }}" {% endif %} name="Quantitep"
+                       class="form-control" id="Quantitep" placeholder="Quantite">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Type</label>
+                <input type="text" name="Type"{% if Type is defined %} value="{{ Type }}" {% endif %}  class="form-control" id="Type" placeholder="Type">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Prix</label>
+                <input type="number" name="Prixpm" {% if Prixpm is defined %} value="{{ Prixpm }}" {% endif %} class="form-control" id="Prixpm" placeholder="Prix">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Date d'Ajout</label>
+                <input type="text" name="Dateajoutpm" {% if Dateajoutpm is defined %} value="{{ Dateajoutpm }}" {% endif %}class="datepicker form-control" placeholder="Date d'ajout">
+            </div>
+            <button type="submit"   class="btn btn-primary"> Save</button> <a    class="btn btn-primary" href="{{ path('app_produitpm_index') }}"><i class="fas fa-fw fa-table"></i>back to list</a>
+
+        </form>
+
+
+    </div>
+
+</div>

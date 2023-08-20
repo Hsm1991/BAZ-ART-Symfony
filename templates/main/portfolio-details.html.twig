@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Produit Aimée</h1>
+{% for produit in produits %}
+{% set d="/portfolioDetails/"~produit.idprod ~"/like"%}
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem;height: 1600rem">
+            {% if produit.imagem1 %}
+
+                <img src="{{ asset('uploads/' ~produit.imagem1) }}" alt="produit.name"
+
+                     width="200" height="200" class ="card-img-top">
+            {% endif %}
+            <div classs="card-body">
+                <h5 class="card-title">{{produit.Nomprod }}</h5>
+                <h5><span class="text text-danger">{{produit.Prixprod }}DT</span></h5>
+                <h5><span class="text text-danger">{{produit.Localisationprod }}</span></h5>
+                <h5><span class="text text-danger">{{produit.Typeprod }}</span></h5>
+                <h5><span class="text text-danger">{{produit.Typestatue }}</span></h5>
+                <a  type="button" class="btn btn-success" href="{{ absolute_url(d)}}">Like</a>
+                <a class="btn btn-danger" href="">Dislike</a>
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endfor %}
+</body>
+</html>
+

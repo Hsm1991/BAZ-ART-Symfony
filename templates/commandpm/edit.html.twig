@@ -1,0 +1,14 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}Edit Commandpm{% endblock %}
+
+{% block body %}
+    <h1>Modifier Commande</h1>
+
+    {{ include('commandpm/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_commandpm_index') }}">back to list</a>
+
+    {{ include('commandpm/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends 'front-seif.html.twig' %}
+
+{% block title %} Panier {% endblock %}
+
+{% block css %}
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('client/css/bootstrap.min.css')}}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{{ asset('client/css/style.css')}}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{{ asset('client/css/responsive.css')}}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{  asset('client/css/custom.css')}}">
+
+    <!-- panier style -->
+    <link rel="stylesheet" href="{{ asset('client/css/panier-style.css') }}">
+    <!-- Load Flashy default CSS -->
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="heading cf">
+        <h1>Mon Panier</h1>
+        <a href="{{ path('app_shop') }}" class="continuepanier">Continue Votre Shopping</a>
+    </div>
+
+
+
+       <div class="panier">
+        {% set panier = getPanier() %}
+        {% set counter = 1 %}
+           {% if panier is not empty %}
+            {% for prod in panier %}
+           {% if counter is odd %}
+               {% set counter=counter+1 %}
+            <li class="items odd">
+
+                <div class="infoWrap">
+                    <div class="cartSection" id="{{ 'cartsec'~ counter }}">
+                        <img src="{{ asset('uploads/'~prod['image']) }}" alt="" class="itemImg" />
+                        <p class="itemNumber">{{ '#'~prod['idProd']  }}</p>
+                        <h3>{{ prod['nomProd'] }}</h3>
+
+                        <p>{{ '$'~prod['prixProd'] }} x <a href="{{ path('app_panier_decreaseQ' , {'idprod': prod['idProd']}) }}"><button class="button-27" role="button" >-</button></a>
+                            <h3>{{ prod['quantite'] }}</h3>
+                            <a href="{{ path('app_panier_increaseQ' , {'idprod': prod['idProd']}) }}"><button class="button-27" role="button">+</button></p></a>
+
+                        {% if prod['quantite'] > 5 %}
+                        <p class="stockStatus">Remise 20% !!!</p>
+                        {% endif%}
+                    </div>
+
+
+                    <div class="prodTotal cartSection" >
+                        <p>{{ '$'~prod['quantite']*getPrixRemise(prod['idProd']) }}</p>
+                    </div>
+                    <div class="cartSection removeWrap">
+                        <a href="{{ path('app_panier_delete' , {'idprod': prod['idProd']}) }}" class="remove">x</a>
+                    </div>
+                </div>
+            </li>
+
+           {% else %}
+               {% set counter=counter+1 %}
+            <li class="items even">
+
+                <div class="infoWrap">
+                    <div class="cartSection">
+
+                        <img src="{{ asset('uploads/'~prod['image']) }}" alt="" class="itemImg" />
+                        <p class="itemNumber">{{ '#'~prod['idProd']  }}</p>
+                        <h3>{{ prod['nomProd'] }}</h3>
+
+                        <p>{{ '$'~prod['prixProd'] }} x <a href="{{ path('app_panier_decreaseQ' , {'idprod': prod['idProd']}) }}"><button class="button-27" role="button" >-</button></a>
+                        <h3>{{ prod['quantite'] }}</h3>
+                        <a href="{{ path('app_panier_increaseQ' , {'idprod': prod['idProd']}) }}"><button class="button-27" role="button">+</button></p></a>
+
+                        {% if prod['quantite'] > 5 %}
+                            <br>
+                            <p class="stockStatus">Remise 20% !!!</p>
+                        {% endif%}
+                    </div>
+
+
+                    <div class="prodTotal cartSection">
+                        <p>{{ '$'~prod['quantite']*getPrixRemise(prod['idProd']) }}</p>
+                    </div>
+                    <div class="cartSection removeWrap">
+                        <a href="{{ path('app_panier_delete' , {'idprod': prod['idProd']}) }}" class="remove">x</a>
+                    </div>
+                </div>
+            </li>
+           {% endif %}
+
+
+    {% endfor %}
+
+    </div>
+
+
+
+
+
+    <div class="subtotal cf">
+
+            <li class="totalRowpanier final"><span class="labelpanier">Total</span><span class="value">{{ '$'~getTotal() }}</span></li>
+            <li class="totalRowpanier"><a href="{{ path('app_panier_passerCommande') }}" class="btnpanier continuepanier">Passer Commande</a></li>
+
+    </div>
+
+
+    {% else %}
+               aucun produit ajouté
+
+
+
+           {% endif%}
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+{% endblock %}
+
+
+
+{% block js %}
+    <!-- ALL JS FILES -->
+    <script src="{{ asset('client/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('client/js/popper.min.js') }}"></script>
+    <script src="{{ asset('client/js/bootstrap.min.js') }}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{{ asset('client/js/jquery.superslides.min.js') }}"></script>
+    <script src="{{ asset('client/js/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('client/js/inewsticker.js') }}"></script>
+    <script src="{{ asset('client/js/bootsnav.js.') }}"></script>
+    <script src="{{ asset('client/js/images-loded.min.js') }}"></script>
+    <script src="{{ asset('client/js/isotope.min.js') }}"></script>
+    <script src=" {{ asset('client/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('client/js/baguetteBox.min.js') }}"></script>
+    <script src="{{ asset('client/js/form-validator.min.js') }}"></script>
+    <script src=" {{ asset('client/js/contact-form-script.js') }}"></script>
+    <script src=" {{ asset('client/js/custom.js') }}"></script>
+<!-- Flashy depends on jQuery -->
+<script src="//code.jquery.com/jquery.js"></script>
+<!-- Load Flashy default JavaScript -->
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+{% endblock %}

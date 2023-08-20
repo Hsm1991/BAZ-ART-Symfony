@@ -1,0 +1,168 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+{#{% if getRole(app.request) == "ROLE_ARTISTE" %}#}
+{#    {% set extendedTemplate = "base-back-artiste.html.twig" %}#}
+{#{% elseif getRole(app.request) == "ROLE_SUPER_ADMIN"%}#}
+{#    {% set extendedTemplate = "base-back.html.twig" %}#}
+{#{% elseif getRole(app.request) == "ROLE_PRESTATAIRE" %}#}
+{#    {% set extendedTemplate = "base-back-prest.html.twig" %}#}
+{#{% endif %}#}
+
+
+{% block title %}Statistiques{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Statistiques</h1>
+        <table>
+
+           <tr>
+               <canvas id="categories2" width="400" height="100"></canvas>
+
+           </tr>
+            <tr>
+                <canvas id="users" width="400" height="100"></canvas>
+
+
+
+            </tr>
+
+            <tr>
+                <canvas id="years" width="400" height="100"></canvas>
+
+
+            </tr>
+
+        </table>
+
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+    <script>
+
+
+        {#let categories = document.querySelector("#categories")#}
+        {#let categoriesGraph = new Chart(categories, {#}
+        {#    type: "pie",#}
+        {#    data: {#}
+        {#        labels: {{ categnom|raw }},#}
+
+        {#        datasets: [{#}
+        {#            label: "Répartition des catégories",#}
+        {#            data: {{ count|raw }},#}
+
+
+        {#            #}{#backgroundColor: ["red","green","blue"]#}
+        {#            #}{#backgroundColor: {{ categColor|raw }}#}
+        {#        }]#}
+        {#    }#}
+        {#})#}
+
+
+         let categories2 = document.querySelector("#categories2")
+         let userGraph1 = new Chart(categories2, {
+             type: "pie",
+             data: {
+                 labels: {{ categnom|raw }},
+                 datasets: [{
+                     label: "number of subs",
+                     // 'backgroundColor' : 'rgb(255, 99, 132)',
+                      'borderColor' :'rgb(255, 99, 132)',
+                        'data': {{ count_cat|raw }},
+
+
+             }]
+
+
+         },
+             options: {
+                 scales: {
+                     y: {
+                         beginAtZero: true
+                     } } } } )
+
+
+
+        let users = document.querySelector("#users")
+        let userGraph2 = new Chart(users, {
+            type: "line",
+            data: {
+
+                {#labels: {{ months|raw }},#}
+
+                labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"],
+                datasets: [{
+                    label: "number of subs  | current year ",
+                    'data': {{ count_user|raw }},
+                    'borderColor' :'green',
+
+                }]
+
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    } } } } )
+
+
+
+
+        let years = document.querySelector("#years")
+        let userGraph3 = new Chart(years, {
+            type: "bar",
+            data: {
+
+                labels: {{ years|raw }},
+
+
+                datasets: [{
+                    label: "number of subs  | current year ",
+                    'data': {{ count_user_year|raw }},
+                    'borderColor' :'green',
+
+                }]
+
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }})
+
+
+
+
+
+        {#let annonces = document.querySelector("#annonces")#}
+        {#let annGraph = new Chart(annonces, {#}
+        {#    type: "line",#}
+        {#    data: {#}
+        {#        labels: {{ dates|raw }},#}
+        {#        datasets: [{#}
+        {#            label: "Nombre d'annonces",#}
+        {#            data: {{ annoncesCount|raw }}#}
+        {#        }]#}
+        {#    },#}
+        {#    options: {#}
+        {#        scales: {#}
+        {#            yAxes: [{#}
+        {#                ticks: {#}
+        {#                    beginAtZero: true#}
+        {#                }#}
+        {#            }]#}
+        {#        }#}
+        {#    }#}
+
+    </script>
+{% endblock %}

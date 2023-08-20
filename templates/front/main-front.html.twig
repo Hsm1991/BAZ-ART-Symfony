@@ -1,0 +1,68 @@
+{% extends 'base-front.html.twig' %}
+
+
+{% block title %}welcome{% endblock %}
+
+{% block body %}
+<!-- Start Slider -->
+
+
+
+    <div id="slides-shop" class="cover-slides">
+    <ul class="slides-container">
+        <li class="text-center">
+            <img src="{{ asset('client/images/img_1.jpg')}}" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Bienvenue dans<br> BAZ'ART</strong></h1>
+                        <p class="m-b-40">Voyez comment vos utilisateurs perçoivent votre site Web en temps réel ou visualisez <br> tendances pour voir tout changement de performance au fil du temps.</p>
+                        <div class="row">
+                            <div class="col">
+
+                                <p><a class="btn hvr-hover" href="/front/login"> Se connecter </a></p>
+                            </div>
+
+                            <div class="col">
+                                <p><a class="btn hvr-hover" href="/front/register-front"> S'inscrire  </a></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <img src="{{ asset('client/images/img_2.jpg')}}" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Bienvenue dans <br> BAZ'ART</strong></h1>
+                        <p class="m-b-40">Voyez comment vos utilisateurs perçoivent votre site Web en temps réel ou visualisez <br> tendances pour voir tout changement de performance au fil du temps.</p>
+                        <p><a class="btn hvr-hover" href="#">Nouveaute au boutique</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <img src="{{ asset('client/images/img_3.jpg')}}" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Bienvenue dans <br> BAZ'ART</strong></h1>
+                        <p class="m-b-40">Voyez comment vos utilisateurs perçoivent votre site Web en temps réel ou visualisez <br> tendances pour voir tout changement de performance au fil du temps.</p>
+                        <p><a class="btn hvr-hover" href="#">Nouveaute au boutique</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="slides-navigation">
+        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    </div>
+</div>
+
+
+    <!-- End Slider -->
+{% endblock %}

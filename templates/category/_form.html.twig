@@ -1,0 +1,24 @@
+{{ form_start(form , {'attr': {'novalidate':'novalidate'}}) }}
+
+
+
+<table class="table table-hover">
+    <tr>
+        <td class="h4">{{ form_label(form.nom,"Nom Catégorie") }}</td>
+        <td>{{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.nom) }}</td>
+    </tr>
+    <tr>
+        <td class="h4"> {{ form_label(form.detail,"Détails") }}</td>
+        <td>{{ form_widget(form.detail,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.detail) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.status,"Statut") }}</td>
+        <td>{{ form_widget(form.status,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.status) }}</td>
+    </tr>
+
+</table>
+<button class="btn btn-info">{{ button_label|default('Ajouter Catégorie') }}<br></button>
+{{ form_end(form) }}

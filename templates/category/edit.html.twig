@@ -1,0 +1,12 @@
+{% extends   getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+    <h1>Edit Category</h1>
+
+    {{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
+<br>
+    <a href="{{ path('app_user_type_index') }}"><button class="btn btn-info">Rétour en Arrière</button></a>
+{% endblock %}

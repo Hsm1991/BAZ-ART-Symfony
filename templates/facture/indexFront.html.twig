@@ -1,0 +1,82 @@
+{% extends 'front-seif.html.twig' %}
+
+{% block title %} mes factures {% endblock %}
+{% block css %}
+<!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('client/css/bootstrap.min.css')}}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{{ asset('client/css/style.css')}}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{{ asset('client/css/responsive.css')}}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{  asset('client/css/custom.css')}}">
+<!-- table-front -->
+<link rel="stylesheet" href="{{ asset('client/css/table-front.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+    <h1 style="font-size: 35px">Mes Factures</h1>
+    <table class="table table-bordered table-striped table-responsive-stack"  id="tableOne">
+        <thead class="thead-dark">
+        <tr>
+            <th>id facture</th>
+            <th>id commande</th>
+            <th>montant</th>
+            <th>date commande</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for facture in factures %}
+            <tr>
+                <td>{{ facture.idfacture }}</td>
+                <td>{{ facture.idcmd }}</td>
+                <td>{{ facture.montant }}</td>
+                <td>{{ facture.datecmd }}</td>
+                <td>
+
+                    <a href="{{ path('app_facture_imprimer', {'idfacture': facture.idfacture} ) }}">imprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">aucune facture</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
+
+{% block js %}
+<!-- ALL JS FILES -->
+    <script src="{{ asset('client/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('client/js/popper.min.js') }}"></script>
+    <script src="{{ asset('client/js/bootstrap.min.js') }}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{{ asset('client/js/jquery.superslides.min.js') }}"></script>
+    <script src="{{ asset('client/js/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('client/js/inewsticker.js') }}"></script>
+    <script src="{{ asset('client/js/bootsnav.js.') }}"></script>
+    <script src="{{ asset('client/js/images-loded.min.js') }}"></script>
+    <script src="{{ asset('client/js/isotope.min.js') }}"></script>
+    <script src=" {{ asset('client/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('client/js/baguetteBox.min.js') }}"></script>
+    <script src="{{ asset('client/js/form-validator.min.js') }}"></script>
+    <script src=" {{ asset('client/js/contact-form-script.js') }}"></script>
+    <script src=" {{ asset('client/js/custom.js') }}"></script>
+    <script src="{{ asset('client/js/table-front.js') }}"></script>
+{% endblock %}

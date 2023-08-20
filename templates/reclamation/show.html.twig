@@ -1,0 +1,39 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}reclamatins{% endblock %}
+{% block body %}
+    <h1>Reclamation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reclamation.id }}</td>
+            </tr>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ reclamation.iduser }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><textarea style="min-width: 1000px ; min-height: 300px" readonly>{{ reclamation.description }}</textarea></td>
+            </tr>
+            <tr>
+                <th>Recdate</th>
+                <td>{{ reclamation.recdate }}</td>
+            </tr>
+            <tr>
+                <th>Selon</th>
+                <td>{{ reclamation.selon }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ reclamation.mail }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_indexback') }}"><button class="btn btn-info">Rétour en Arrière</button></a>
+
+{% endblock %}

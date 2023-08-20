@@ -1,0 +1,14 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-front-artiste.html.twig" : "front-seif.html.twig" %}
+
+{% block title %}nouvelle Reclamation{% endblock %}
+
+{% block body %}
+    <h1 class="text-primary" style="margin-left: 35%; font-size: 50px">Creer nouvelle reclamation</h1>
+
+    {{ include('reclamation/_form.html.twig') }}
+
+    <a href="{{ path('app_reclamation_indexfront') }}"><button class="btn btn-info" style="margin-left: 49.2%">Retour En Arrière</button></a>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
+
+

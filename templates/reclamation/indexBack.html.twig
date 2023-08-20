@@ -1,0 +1,57 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+
+
+{% block title %}Evenement index{% endblock %}
+
+{% block body %}
+    <h1 class="text-primary" style="margin-left: 35%">Reclamations </h1>
+
+
+
+    <table class="table table-bordered border-primary">
+        <thead>
+        <tr>
+
+            <th>Id</th>
+            <th>Iduser</th>
+            <th>Recdate</th>
+            <th>Selon</th>
+            <th>Mail</th>
+            <th>actions</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.iduser }}</td>
+                <td>{{ reclamation.recdate }}</td>
+                <td>{{ reclamation.selon }}</td>
+                <td>{{ reclamation.mail }}</td>
+
+                <td>
+                    <a class="nav-link" href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">
+                        <i class="fa fa-book fa-fw" aria-hidden="true"></i>
+                        <span>Afficher</span></a>
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(reclamations) }}
+    </div>
+
+
+{% endblock %}
+

@@ -1,0 +1,64 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}Reservations index{% endblock %}
+
+
+{% block body %}
+    <h1 class="text-primary" style="margin-left: 35%">Réservations Index</h1>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <table class="table table-bordered border-primary">
+        <thead>
+        <tr>
+            <th class="h5">IdRes</th>
+            <th class="h5">NomArtiste</th>
+            <th class="h5">DateRes</th>
+            <th class="h5">Montant</th>
+
+            <th class="h5">actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for re in res %}
+            <tr>
+                <td class="h5">{{ re.idRes }}</td>
+                <td class="h5">{{ re.nomArtiste }}</td>
+                <td class="h5">{{ re.dateRes }}</td>
+                <td class="h5">{{ re.montant }}</td>
+
+
+
+                <td>
+                    <a class="nav-link" href="{{ path('app_resnew_show', {'idRes': re.idRes}) }}">
+                        <i class="fa fa-book fa-fw" aria-hidden="true"></i>
+                        <span>Afficher</span></a>
+
+                    <a class="nav-link" href="{{ path('app_resnew_edit', {'idRes': re.idRes}) }}">
+                        <i class="fa fa-cog fa-spin fa-1.75 fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+
+                        <span>Modifier</span></a>
+
+                    <a class="nav-link" href="{{ path('app_resnew_delete', {'idRes': re.idRes}) }}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <span>Supprimer</span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_resnew_new') }}"><button class="btn btn-info">Ajouter Une Reservation</button></a>
+{% endblock %}

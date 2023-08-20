@@ -1,0 +1,35 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}UserType{% endblock %}
+
+{% block body %}
+    <h1>UserType</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_type.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user_type.nom }}</td>
+            </tr>
+            <tr>
+                <th>Detail</th>
+                <td>{{ user_type.detail }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ user_type.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('app_user_type_index') }}"><button class="btn btn-info">Rétour en Arrière</button></a>
+    <br>
+<br>
+    <a href="{{ path('app_user_type_edit', {'id': user_type.id}) }}"><button class="btn btn-info">Modifier</button></a>
+
+{#    {{ include('category/_delete_form.html.twig') }}#}
+{% endblock %}

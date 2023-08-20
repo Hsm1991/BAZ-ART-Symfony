@@ -1,0 +1,80 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-front-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}Evenement index{% endblock %}
+
+{% block body %}
+    <h1 class="text-primary" style="margin-left: 35%">Evenements Index</h1>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <table class="table table-bordered border-primary" style="margin-left: auto;
+  margin-right: auto;">
+        <thead>
+            <tr>
+                <th class="h5">Id</th>
+                <th class="h5">NomEvent</th>
+                <th class="h5">AdresseEvent</th>
+                <th class="h5">CapaciteEvent</th>
+                <th class="h5">NbrTicketAchete</th>
+                <th class="h5">DateDebutEvent</th>
+                <th class="h5">DateFinEvent</th>
+                <th class="h5">TypeEvent</th>
+                <th class="h5">CategorieEvent</th>
+                <th class="h5">PrixEntre</th>
+                <th class="h5">Image Evènement</th>
+                <th class="h5">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td class="h5">{{ evenement.id }}</td>
+                <td class="h5">{{ evenement.NomEvent }}</td>
+                <td class="h5">{{ evenement.AdresseEvent }}</td>
+                <td class="h5">{{ evenement.CapaciteEvent }}</td>
+                <td class="h5">{{ evenement.nbrTicketAchete }}</td>
+                <td class="h5">{{ evenement.DateDebutEvent ? evenement.DateDebutEvent|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="h5">{{ evenement.DateFinEvent ? evenement.DateFinEvent|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="h5">{{ evenement.TypeEvent }}</td>
+                <td class="h5">{{ evenement.CategorieEvent }}</td>
+                <td class="h5">{{ evenement.PrixEntre }}</td>
+                <td class="h5">
+                    <img  class="rounded mx-auto d-block" width="60" height="60"
+                          class ="fluid my-2 rounded"
+                         src={{ asset('uploads/personnes/' ~ getImgName(evenement.image1))}}  >
+                    <a href=""></a>
+                </td>
+
+                <td>
+                    <a class="nav-link" href="{{ path('app_event_show_b', {'id': evenement.id}) }}">
+                        <i class="fa fa-book fa-fw" aria-hidden="true"></i>
+                        <span>Afficher</span></a>
+
+                    <a class="nav-link" href="{{ path('app_event_edit', {'id': evenement.id}) }}">
+                        <i class="fa fa-cog fa-spin fa-1.75 fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+
+                        <span>Modifier</span></a>
+
+                    <a class="nav-link" href="{{ path('app_event_delete', {'id': evenement.id}) }}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <span>Supprimer</span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_event_new') }}"><button class="btn btn-info">Ajouter Un Nouveau Evènement</button></a>
+{% endblock %}

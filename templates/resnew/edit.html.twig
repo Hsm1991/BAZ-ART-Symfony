@@ -1,0 +1,14 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}Edit Res{% endblock %}
+
+{% block body %}
+    <h1 class="text-primary" style="margin-left: 35%">Modifier Reservation</h1>
+
+    {{ include('resnew/_form.html.twig', {'button_label': 'Mettre à Jour'}) }}<br>
+
+    <a href="{{ path('app_resnew_index') }}"><button class="btn btn-info">Reour en Arrière</button></a><br>
+
+   <br> {{ include('resnew/_delete_form.html.twig') }}
+{% endblock %}

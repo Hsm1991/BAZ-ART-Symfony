@@ -1,0 +1,104 @@
+{% extends 'baseLogin.html.twig' %}
+
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+    <br>
+    <div class="card-body">
+        <div class="container">
+
+            <div class="col-6 offset-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+
+
+                        <form method="post">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout_front') }}">Logout</a>
+                                </div>
+                            {% endif %}
+
+                            <div class="w-4/5 m-auto text-center">
+                                <div class="py-12 border-b border-gray-200">
+                                    <h1 class="text-6xl pt-12 pb-8">
+                                        Login
+                                    </h1>
+
+                                    <div class="row mb-sm-5"> </div>
+
+                                    <div class="form-outline ">
+                                        <div class="form-outline mb-4">
+
+                                            <input
+                                                    type="email"
+                                                    value="{{ last_username }}"
+                                                    name="email"
+                                                    id="inputEmail"
+                                                    class="form-control"
+                                                    placeholder="Email"
+                                                    autocomplete="email"
+                                                    required
+                                                    autofocus
+                                            >
+
+                                        </div>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input
+                                                type="password"
+                                                name="password"
+                                                id="inputPassword"
+                                                class="form-control"
+                                                autocomplete="current-password"
+                                                placeholder="Password"
+                                                required
+                                        >
+                                    </div>
+
+                                    <input
+                                            type="hidden"
+                                            name="_csrf_token"
+                                            value="{{ csrf_token('authenticate') }}"
+                                    >
+
+                                    <div class="row mb-4">
+                                        <div class="col d-flex justify-content-center">
+                                            <!-- Checkbox -->
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                                                <label class="form-check-label" for="form1Example3"> Remember me </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <!-- Simple link -->
+                                            <a href="{{ path('forgotten_password_front') }}">Forgot password?</a>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block" href="/ev/front">Sign in</button>
+                                    </div>
+
+
+                                    <div class="text-center">
+                                        <p>Not a member? <a href="/front/register-front">Register</a></p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

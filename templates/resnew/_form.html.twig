@@ -1,0 +1,33 @@
+
+{{ form_start(form , {'attr': {'novalidate':'novalidate'}}) }}
+
+
+
+<table class="table table-hover">
+    <tr>
+        <td class="h4">{{ form_label(form.nomArtiste,"Nom de l'artiste") }}</td>
+        <td>{{ form_widget(form.nomArtiste,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.nomArtiste) }}</td>
+    </tr>
+    <tr>
+        <td class="h4"> {{ form_label(form.dateRes,"Date De Réservation") }}</td>
+        <td>{{ form_widget(form.dateRes,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.dateRes) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.montant,"Montant De la Réservation") }}</td>
+        <td>{{ form_widget(form.montant,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.montant) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.Salle_id,"Nom Salle") }}</td>
+        <td>{{ form_widget(form.Salle_id,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.Salle_id) }}</td>
+    </tr>
+
+
+</table>
+
+<button class="btn btn-info">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+

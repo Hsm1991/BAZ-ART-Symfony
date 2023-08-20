@@ -1,0 +1,11 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}New Produitpm{% endblock %}
+
+{% block body %}
+
+    {{ include('produitpm/_form.html.twig') }}
+
+
+{% endblock %}

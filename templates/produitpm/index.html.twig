@@ -1,0 +1,83 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+
+{% block title %}Liste Des Produits Primaires {% endblock %}
+
+{% block body %}
+
+
+
+
+    {% if messages is defined %}
+        <div id="slow" class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well done! le produit est ajouter avec succes</h4>
+            {{ messages }}
+        </div>
+    {% endif %}
+    <h1>Liste Des Produits Primaires </h1>
+    <br>
+
+
+
+
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <div class="container">
+        <table class="table table-bordered" id="prodpm">
+            <thead>
+            <tr class="table-primary">
+                <th>Id Du produit</th>
+                <th>Nom du Produit</th>
+                <th>Reference</th>
+                <th>Quantite</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Date d'Ajout</th>
+                <th>qrcode</th>
+                <th>actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for produitpm in produitpms %}
+                <tr>
+                    <td>{{ produitpm.idprod }}</td>
+                    <td>{{ produitpm.nomprod }}</td>
+                    <td>{{ produitpm.referencep }}</td>
+                    <td>{{ produitpm.quantitep }}</td>
+                    <td>{{ produitpm.typep }}</td>
+                    <td>{{ produitpm.prixpm }}</td>
+                    <td>{{ produitpm.dateajoutpm }}</td>
+
+                    <td>
+                        <img class="img-fluid" src="/assets/qr-code/{{ produitpm.qrcode }}">
+                    </td>
+
+                    <td style="background-color:#3a3b45">
+
+                        <a class="nav-link" href="/produitpm/update/{{ produitpm.idprod }}"> <i
+                                    class="fa fa-cog fa-spin fa-1.75 fa-fw"></i>
+                            <span class="sr-only">Loading...</span>
+
+                            <span>Modifier</span> </a>
+                        <a class="nav-link" onclick="deleteItem({{ produitpm.idprod }})"> <i class="fa fa-trash" ></i>Supprimer</a>
+                        <a class="nav-link"
+                           href="{{ path('app_produitpm_show', {'id': produitpm.idprod}) }}"><i
+                                    class="fas fa-fw fa-table"></i>afficher</a>
+                    </td>
+
+                </tr>
+
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        <a class="btn btn-primary" href="/produitpm/add">Ajouter une matière primaire</a>
+    </div>
+
+{% endblock %}
+
+

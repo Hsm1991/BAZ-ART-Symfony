@@ -1,0 +1,39 @@
+{{ form_start(form , {'attr': {'novalidate':'novalidate'}}) }}
+
+
+
+<table class="table table-hover">
+    <tr>
+        <td class="h4">{{ form_label(form.nom,"Nom de la Salle") }}</td>
+        <td>{{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.nom) }}</td>
+    </tr>
+    <tr>
+        <td class="h4"> {{ form_label(form.type,"Type de la Salle") }}</td>
+        <td>{{ form_widget(form.type,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.type) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.statu,"Statut de la Salle") }}</td>
+        <td>{{ form_widget(form.statu,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.statu) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.prix,"Prix De la Salle") }}</td>
+        <td>{{ form_widget(form.prix,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.prix) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.capacite,"Capacité De la Salle") }}</td>
+        <td class="date">{{ form_widget(form.capacite) }}</td>
+        <td>{{ form_errors(form.capacite) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.image,"Image De La Salle") }}</td>
+        <td>{{ form_widget(form.image) }}</td>
+        <td>{{ form_errors(form.image) }}</td>
+    </tr>
+
+</table>
+<button class="btn btn-info">{{ button_label|default('Ajouter La Salle') }}<br></button>
+{{ form_end(form) }}

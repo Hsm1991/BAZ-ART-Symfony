@@ -1,0 +1,68 @@
+{{ form_start(form , {'attr': {'novalidate':'novalidate'}}) }}
+
+
+
+<table class="table table-hover">
+    <tr>
+        <td class="h4">{{ form_label(form.email,"Email") }}</td>
+        <td>{{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.email) }}</td>
+    </tr>
+    <tr>
+        <td class="h4"> {{ form_label(form.lastname,"Nom") }}</td>
+        <td>{{ form_widget(form.lastname,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.lastname) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.firstname,"Prénom") }}</td>
+        <td>{{ form_widget(form.firstname,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.firstname) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.address,"Adresse") }}</td>
+        <td>{{ form_widget(form.address,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.address) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.tel,"Numéro Téléphone") }}</td>
+        <td class="date">{{ form_widget(form.tel) }}</td>
+        <td>{{ form_errors(form.tel) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.city,"Ville") }}</td>
+        <td>{{ form_widget(form.city) }}</td>
+        <td>{{ form_errors(form.city) }}</td>
+    </tr>
+{#    <tr>#}
+{#        <td class="h4">{{ form_label(form.Type_Event,"Type de l'évènement") }}</td>#}
+{#        <td>{{ form_widget(form.Type_Event,{'attr':{'class':'form-control'}}) }}</td>#}
+{#        <td>{{ form_errors(form.Type_Event) }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td class="h4">{{ form_label(form.roles,"Role") }}</td>#}
+{#        <td>{{ form_widget(form.roles,{'attr':{'class':'form-control'}}) }}</td>#}
+{#        <td>{{ form_errors(form.roles) }}</td>#}
+{#    </tr>#}
+
+    <tr>
+        <td class="h4" >{{ form_label(form.category,"categorie") }}</td>
+        <td>{{ form_widget(form.category,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.category) }}</td>
+    </tr>
+
+    <tr>
+        <td class="h4">{{ form_label(form.isVerified,"Est Vérifié ?") }}</td>
+        <td>{{ form_widget(form.isVerified,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.isVerified) }}</td>
+
+
+    </tr>
+    <tr>
+        <td class="h4" >{{ form_label(form.password,"Mot de Passe") }}</td>
+        <td>{{ form_widget(form.password,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.password) }}</td>
+    </tr>
+
+</table>
+<button class="btn btn-info">{{ button_label|default('Ajouter Utilisateur') }}<br></button>
+{{ form_end(form) }}

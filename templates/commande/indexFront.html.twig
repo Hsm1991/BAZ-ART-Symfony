@@ -1,0 +1,134 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-front-artiste.html.twig" : "front-seif.html.twig" %}
+{% block title %}Mes Commandes{% endblock %}
+
+{% block css %}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{{ asset('client/css/bootstrap.min.css')}}">
+<!-- Site CSS -->
+<link rel="stylesheet" href="{{ asset('client/css/style.css')}}">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="{{ asset('client/css/responsive.css')}}">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{{  asset('client/css/custom.css')}}">
+<!-- table-front -->
+
+<!-- Load Flashy default CSS -->
+<link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
+
+<link rel="stylesheet" href="{{ asset('client/css/commande-style.css') }}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    {% for commande in commandes %}
+        {% set total =  0 %}
+        {% set idcmd = 0 %}
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <div class="title-date">
+                <h2 class="title">COMMANDE</h2>
+                {% set break = false %}
+                {% for prod in commande  %}
+                    {% if not break %}
+                        <p class="date">{{ '#'~prod.idcmd }}</p>
+                        </div>
+                        <div class="space"></div>
+                        <p class="invoice-number">{{ prod.datecmd }}</p>
+                        {% set break = true %}
+                    {% endif %}
+                {% endfor %}
+        </div>
+        <div class="invoice-body">
+            <table>
+                <thead>
+                <th style="padding-left:12px;">PRODUIT</th>
+                <th>QUANTITE</th>
+                <th>PRIX</th>
+                <th>PRIX REMISE</th>
+                <th style="text-align: right;">TOTAL</th>
+                </thead>
+
+                <tbody id="table-body">
+                {% for prod in commande %}
+                    {% set total = total + prod.quantite * prod.prixRemise %}
+                        <tr class="single-row">
+                            <td>{{ prod.nomProd }}</td>
+                            <td>{{ prod.quantite }}</td>
+                            <td>{{'$' ~ prod.prixProd }}</td>
+                            <td>{{ '$' ~ prod.prixRemise }}</td>
+                            <td style="text-align: right;">{{ '$' ~ prod.quantite * prod.prixRemise }}</td>
+                        </tr>
+                    {% set idcmd = prod.idcmd %}
+                {% endfor %}
+                </tbody>
+            </table>
+            <div id="sum">{{ '$'~total }}</div>
+
+        </div>
+
+        <div>
+            <br><br><br>
+        </div>
+
+        <div class="nav-button">
+            <a href="{{ path('app_stripe_checkout' , {'idcmd': idcmd}) }}"><button class="button-32" role="button" >Procéder au paiement</button> </a>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <a href="{{ path('app_commande_annuler' , {'idcmd': idcmd}) }}"><button class="button-32" role="button">Annuler Commande</button></a>
+        </div>
+
+
+
+        <br><br><br><br>
+
+        <div class="navigation-pag" style="margin-left: 37%">
+            <p>{{ knp_pagination_render(commandes) }}</p>
+        </div>
+
+    </div>
+    {% endfor %}
+
+    {% if commandes is empty %}
+        <br><br>
+        <h1>AUCUNE COMMANDE A AFFICHER</h1>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    {% endif %}
+
+
+
+    {%  block footer %}
+        {% endblock %}
+
+{% endblock %}
+
+{% block js %}
+<!-- ALL JS FILES -->
+    <script src="{{ asset('client/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('client/js/popper.min.js') }}"></script>
+    <script src="{{ asset('client/js/bootstrap.min.js') }}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{{ asset('client/js/jquery.superslides.min.js') }}"></script>
+    <script src="{{ asset('client/js/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('client/js/inewsticker.js') }}"></script>
+    <script src="{{ asset('client/js/bootsnav.js.') }}"></script>
+    <script src="{{ asset('client/js/images-loded.min.js') }}"></script>
+    <script src="{{ asset('client/js/isotope.min.js') }}"></script>
+    <script src=" {{ asset('client/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('client/js/baguetteBox.min.js') }}"></script>
+    <script src="{{ asset('client/js/form-validator.min.js') }}"></script>
+    <script src=" {{ asset('client/js/contact-form-script.js') }}"></script>
+    <script src=" {{ asset('client/js/custom.js') }}"></script>
+{#    <script src="{{ asset('js/panier-dynamic.js') }}"></script>#}
+<!-- Flashy depends on jQuery -->
+<script src="//code.jquery.com/jquery.js"></script>
+<!-- Load Flashy default JavaScript -->
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+<script src="{{ asset('js/commande-js.js') }}" async defer></script>
+
+{% endblock %}

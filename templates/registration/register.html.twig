@@ -1,0 +1,79 @@
+{% extends 'baseLogin.html.twig' %}
+
+{% block title %}Register {% endblock %}
+
+
+    {% block body %}
+
+        <div class="row mb-sm-5"> </div>
+        <div class="container">
+
+            <div class="col-6 offset-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+
+                        <h1 class="text-center">Register</h1>
+                        {{ form_start(registrationForm) }}
+                        <div class="row mb-sm-5"> </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+
+                                    {{ form_row(registrationForm.firstname ,{ "label":false,"required":true,"attr": {
+                                        "placeholder": "First name"
+                                    }}) }}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    {{ form_row(registrationForm.lastname ,{ "label":false,"required":true,"attr": {
+                                        "placeholder": "Last name"
+                                    }}) }}
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {{ form_row(registrationForm.address ,{ "label":false,"required":true,"attr": {
+                            "placeholder": "Address"
+                        }}) }}
+                        {{ form_row(registrationForm.city ,{ "label":false,"required":true,"attr": {
+                            "placeholder": "City"
+                        }}) }}
+                        {{ form_row(registrationForm.tel ,{ "label":false,"required":true,"attr": {
+                            "placeholder": "Phone number"
+                        }}) }}
+
+
+                        <div class="row mb-4"></div>
+                        <hr class="hr hr-blurry" />
+                        <div class="row mb-4"></div>
+
+                        {{ form_row(registrationForm.category) }}
+                        {{ form_row(registrationForm.email) }}
+
+
+
+                        {{ form_row(registrationForm.password ,{ "label":false,"required":true,"attr": {
+                            "placeholder": "password"
+                        }}) }}
+                        <div class="row mb-4"></div>
+                        {{ form_row(registrationForm.agreeTerms) }}
+
+                        <button class="btn btn-primary btn-block">Register</button>
+                        {{ form_end(registrationForm) }}
+
+                        <div class="text-center">
+                            <p> Already a member?<a href="{{ path('app_login') }}">Log in</a></p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+

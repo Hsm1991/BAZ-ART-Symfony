@@ -1,0 +1,36 @@
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+
+
+{% block body %}
+    <h1 class="text-primary" style="margin-left: 35%">Reservations</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <th class="h5">IdRes</th>
+            <td class="h4">{{ re.idRes }}</td>
+        </tr>
+        <tr>
+            <th class="h5">NomArtiste</th>
+            <td class="h4">{{ re.nomArtiste }}</td>
+        </tr>
+        <tr>
+            <th class="h5">DateRes</th>
+            <td class="h4">{{ re.dateRes }}</td>
+        </tr>
+        <tr>
+            <th class="h5">Montant</th>
+            <td class="h4">{{ re.montant }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <a href="{{ path('app_resnew_index') }}"><button class="btn btn-info">En Arrière</button></a><br>
+
+    <br> <a href="{{ path('app_resnew_edit', {'idRes': re.idRes}) }}"><button class="btn btn-info">Modifier</button></a><br>
+
+    <br> {{ include('resnew/_delete_form.html.twig') }}
+{% endblock %}

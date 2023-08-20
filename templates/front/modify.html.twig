@@ -1,0 +1,82 @@
+{#{% extends 'base-front.html.twig' %}#}
+{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-front-artiste.html.twig" : 'base-front.html.twig'  %}
+
+
+{% block title %} Modify  {% endblock %}
+
+
+    {% block body %}
+
+
+
+<div class="container">
+
+
+
+
+    <div class="row mb-sm-5"> </div>
+    <div class="container">
+
+        <div class="col-6 offset-3">
+            <div class="card bg-light">
+                <div class="card-body">
+
+                    <h1 class="text-center">Edit Info </h1>
+                    {{ form_start(form) }}
+                    <div class="row mb-sm-5"> </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+
+                                {{ form_row(form.firstname ) }}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                {{ form_row(form.lastname ) }}
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {{ form_row(form.address ) }}
+                    {{ form_row(form.city ) }}
+                    {{ form_row(form.tel) }}
+
+
+                    <div class="row mb-4"></div>
+                    <hr class="hr hr-blurry" />
+                    <div class="row mb-4"></div>
+
+{#                    {{ form_row(registrationForm.category) }}#}
+                    {{ form_row(form.email) }}
+
+                    <p> Please re-enter your pasword </p>
+
+
+
+                    {{ form_row(form.password ) }}
+                    <div class="row mb-4"></div>
+{#                    {{ form_row(registrationForm.agreeTerms) }}#}
+
+                    <button class="btn btn-primary btn-block">Apply changes</button>
+                    {{ form_end(form) }}
+
+
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-block">Return</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}

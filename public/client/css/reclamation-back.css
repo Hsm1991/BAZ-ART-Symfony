@@ -1,0 +1,79 @@
+/* =============================================================================
+   Responsive Table CSS
+   ========================================================================== */
+
+.reclam-back {
+  display: block;
+  width: 100%;
+  margin: 1em 0;
+}
+
+.reclam-back thead, .reclam-back tbody, .reclam-back thead tr, .reclam-back th {
+  display: block;
+}
+
+.reclam-back thead {
+  float: left;
+}
+
+.reclam-back tbody {
+  width: auto;
+  position: relative;
+  overflow-x: auto;
+}
+
+.reclam-back td, .reclam-back th {
+  padding: .625em;
+  line-height: 1.5em;
+  border-bottom: 1px dashed #ccc;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.reclam-back th {
+  text-align: left;
+  background: rgba(0, 0, 0, 0.14);
+  border-bottom: 1px dashed #aaa;
+}
+
+.reclam-back tbody tr {
+  display: table-cell;
+}
+
+.reclam-back tbody td {
+  display: block;
+}
+
+.dataTabreclam-backle tr:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+@media screen and (min-width: 50em) {
+
+  .reclam-back {
+    display: table;
+  }
+
+  .reclam-back thead {
+    display: table-header-group;
+    float: none;
+  }
+
+  .reclam-back tbody {
+    display: table-row-group;
+  }
+
+  .reclam-back thead tr, .reclam-back tbody tr {
+    display: table-row;
+  }
+
+  .reclam-back th, .reclam-back tbody td {
+    display: table-cell;
+  }
+
+  .reclam-back td, .reclam-back th {
+    width: auto;
+  }
+
+}

@@ -1,0 +1,32 @@
+
+
+{{ form_start(form , {'attr': {'novalidate':'novalidate'}}) }}
+
+
+
+<table class="table table-hover">
+    <tr>
+        <td class="h4">{{ form_label(form.selon,"Réclamation Selon") }}</td>
+        <td>{{ form_widget(form.selon,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.selon) }}</td>
+    </tr>
+    <tr>
+        <td class="h4"> {{ form_label(form.mail,"Adresse Mail") }}</td>
+        <td>{{ form_widget(form.mail,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.mail) }}</td>
+    </tr>
+    <tr>
+        <td class="h4">{{ form_label(form.description,"Description") }}</td>
+        <td>{{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}</td>
+        <td>{{ form_errors(form.description) }}</td>
+    </tr>
+
+</table>
+<button class="btn btn-info" style="margin-left: 50%">{{ button_label|default('Enregistrer') }}<br></button><br><br>
+{{ form_end(form) }}
+
+
+
+
+
+

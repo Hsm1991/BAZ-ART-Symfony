@@ -1,0 +1,45 @@
+{#{% extends 'show.html.twig' %}#}
+{% extends  "base-front-artiste.html.twig"  %}
+{% block title %}Salle index{% endblock %}
+
+{% block body %}
+    <h1>Salle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Statu</th>
+                <th>Prix</th>
+                <th>Capacite</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for salle in salles %}
+            <tr>
+                <td>{{ salle.id }}</td>
+                <td>{{ salle.nom }}</td>
+                <td>{{ salle.type }}</td>
+                <td>{{ salle.statu }}</td>
+                <td>{{ salle.prix }}</td>
+                <td>{{ salle.capacite }}</td>
+                <td>{{ salle.image }}</td>
+                <td>
+                    <a href="{{ path('app_salle_front_show', {'id': salle.id}) }}">show</a>
+                    <a href="{{ path('app_salle_front_edit', {'id': salle.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_salle_front_new') }}">Create new</a>
+{% endblock %}

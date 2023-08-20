@@ -1,0 +1,36 @@
+{#{% extends getRole(app.request) == "ROLE_ARTISTE" ? "base-back-artiste.html.twig" :  getRole(app.request) == "ROLE_PRESTATAIRE"  ? 'base-back-prest.html.twig' : 'base-back.html.twig' %}#}
+{% extends  "base-front-artiste.html.twig"  %}
+
+
+{% block title %}Ticket{% endblock %}
+
+{% block body %}
+    <h1>Ticket</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th class="h5">Id</th>
+                <td class="h4">{{ ticket.id }}</td>
+            </tr>
+            <tr>
+                <th class="h5">PrixTicket</th>
+                <td class="h4">{{ ticket.PrixTicket }}</td>
+            </tr>
+            <tr>
+                <th class="h5">NomEvent</th>
+                <td class="h4">{{ ticket.NomEvent }}</td>
+            </tr>
+            <tr>
+                <th class="h5">TypeTicket</th>
+                <td class="h4">{{ ticket.TypeTicket }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><a href="{{ path('app_ticket_index') }}"><button class="btn btn-info">En Arrière</button></a><br>
+
+    <a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}"><br><button class="btn btn-info">Modifier<br></button></a><br>
+
+   <br> {{ include('ticket/_delete_form.html.twig') }}
+{% endblock %}
